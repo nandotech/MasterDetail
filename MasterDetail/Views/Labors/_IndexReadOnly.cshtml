@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MasterDetail.Models.Labor>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Labors List</strong>
+    </div>
+
+    <table class="table table-hover table-striped table-condensed small">
+        <tr>
+            <th class="col-md-1">
+                @Html.DisplayNameFor(model => model.ServiceItemCode)
+            </th>
+            <th class="col-md-4">
+                @Html.DisplayNameFor(model => model.ServiceItemName)
+            </th>
+            <th class="col-md-1 text-right">
+                @Html.DisplayNameFor(model => model.LaborHours)
+            </th>
+            <th class="col-md-1 text-right">
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th class="col-md-1 text-right">
+                @Html.DisplayNameFor(model => model.ExtendedPrice)
+            </th>
+            <th class="col-md-1 text-center">
+                @Html.DisplayNameFor(model => model.PercentComplete)
+            </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceItemCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceItemName)
+            </td>
+            <td class="text-right">
+                @Html.DisplayFor(modelItem => item.LaborHours)
+            </td>
+            <td class="text-right">
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td class="text-right">
+                @Html.DisplayFor(modelItem => item.ExtendedPrice, "CustomNumberFormat")
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.PercentComplete)
+            </td>
+        </tr>
+    }
+
+    </table>
+</div>

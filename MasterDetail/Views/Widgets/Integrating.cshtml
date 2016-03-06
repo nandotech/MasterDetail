@@ -1,0 +1,75 @@
+﻿@model MasterDetail.Models.Widget
+
+<h2>Integrate Widget</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.WidgetId)
+        @Html.HiddenFor(model => model.CurrentWorkerId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MainBusCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MainBusCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MainBusCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestPassDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestPassDateTime, "DateReadOnly")
+                @Html.ValidationMessageFor(model => model.TestPassDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WidgetStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WidgetStatus, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group form-group-sm">
+            @Html.LabelFor(model => model.CurrentWorker.FullName, "Current Worker", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CurrentWorker.FullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group form-group-sm">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" name="Command" value="Save" class="btn btn-default">Save</button>
+                <button type="submit" name="Command" value="PromoteToIntegrated" class="btn btn-success">Promote to Integrated</button>
+                <button type="submit" name="Command" value="Relinquish" class="btn btn-warning">Relinquish</button>
+                <button type="submit" name="Command" value="DemoteToCanceled" class="btn btn-danger">Demote to Canceled</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "WorkList")
+</div>
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-10">
+        @{Html.RenderAction("LogEntries", "LogEntries", new { entityFormalNamePlural = Model.EntityFormalNamePlural, entityKeyValue = Model.WidgetId });}
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

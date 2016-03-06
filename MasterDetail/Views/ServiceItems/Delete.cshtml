@@ -1,0 +1,48 @@
+﻿@model MasterDetail.Models.ServiceItem
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ServiceItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceItemCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceItemCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

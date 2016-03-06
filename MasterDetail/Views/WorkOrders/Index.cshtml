@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MasterDetail.Models.WorkOrder>
+
+<h2>Work Orders</h2>
+
+<p class="text-danger">@TempData["MessageToClient"]</p>
+
+<table class="table table-hover table-condensed small">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentWorker.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.AccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TargetDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrderStatus)
+        </th>
+        <th class="text-right">
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.ActionLink("Create", "Create", "WorkOrders", null, new { @class = "btn btn-primary btn-xs" })
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentWorker.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.AccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDateTime, "VeryLongDateTime")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TargetDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkOrderStatus)
+        </td>
+        <td class="text-right">
+            @Html.DisplayFor(modelItem => item.Total, "CustomNumberFormat")
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "WorkOrders", new { id = item.WorkOrderId }, new { @class = "btn btn-default btn-xs" }) 
+            @Html.ActionLink("Delete", "Delete", "WorkOrders", new { id = item.WorkOrderId }, new { @class = "btn btn-danger btn-xs" })
+        </td>
+    </tr>
+}
+
+</table>

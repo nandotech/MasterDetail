@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MasterDetail.Models.LogEntry>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Audit Trail</strong>
+    </div>
+    
+    <div style="height: 300px; overflow-y: scroll;">
+        <table class="table table-hover table-striped table-condensed small">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LogDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LogLevel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-nowrap">
+                        @Html.DisplayFor(modelItem => item.LogDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LogLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "LogEntries", new { id = item.LogEntryID }, new { @class = "btn btn-default btn-xs" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

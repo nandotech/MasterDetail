@@ -1,0 +1,42 @@
+﻿@model MasterDetail.Models.ServiceItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ServiceItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceItemCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceItemCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ServiceItemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MasterDetail.Models.Part>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Parts List</strong>
+    </div>
+
+    <table class="table table-hover table-striped table-condensed small">
+        <tr>
+            <th class="col-md-1">
+                @Html.DisplayNameFor(model => model.InventoryItemCode)
+            </th>
+            <th class="col-md-4">
+                @Html.DisplayNameFor(model => model.InventoryItemName)
+            </th>
+            <th class="col-md-1 text-right">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th class="col-md-1 text-right">
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th class="col-md-1 text-right">
+                @Html.DisplayNameFor(model => model.ExtendedPrice)
+            </th>
+            <th class="col-md-1 text-center">
+                @Html.DisplayNameFor(model => model.IsInstalled)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InventoryItemCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InventoryItemName)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.ExtendedPrice, "CustomNumberFormat")
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.IsInstalled)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

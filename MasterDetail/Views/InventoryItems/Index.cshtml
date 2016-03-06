@@ -1,0 +1,65 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<MasterDetail.Models.InventoryItem>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Inventory Items";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Index", "InventoryItems", FormMethod.Get, new {@class = "form-inline"}))
+{
+    @Html.Label("search", "Item Code or Name: ", new {@class = "control-label"})
+    @Html.TextBox("search", ViewBag.CurrentSearch as string, new {@class = "form-control"})
+    <input type="submit" value="Search" class="btn btn-default"/>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Category", "Index", new {sort = ViewBag.CategorySort, search = ViewBag.CurrentSearch})
+        </th>
+        <th>
+            @Html.ActionLink("Item Code", "Index", new { sort = ViewBag.ItemCodeSort, search = ViewBag.CurrentSearch })
+        </th>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sort = ViewBag.NameSort, search = ViewBag.CurrentSearch })
+        </th>
+        <th>
+            @Html.ActionLink("Unit Price", "Index", new { sort = ViewBag.UnitPriceSort, search = ViewBag.CurrentSearch })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InventoryItemCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InventoryItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InventoryItemId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InventoryItemId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InventoryItemId })
+        </td>
+    </tr>
+}
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new {page, sort = ViewBag.CurrentSort, search = ViewBag.CurrentSearch}))

@@ -1,0 +1,58 @@
+﻿@model MasterDetail.Models.Widget
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Widget</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentWorker.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentWorker.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainBusCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainBusCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TestPassDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestPassDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WidgetStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WidgetStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WidgetId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MasterDetail.Models.IWorkListItem>
+
+<h2>WorkList</h2>
+
+<p class="text-danger">@TempData["MessageToClient"]</p>
+
+<p>
+    @if (User.IsInRole("Clerk"))
+    {
+        @Html.ActionLink("Create Work Order", "Create", "WorkOrders", null, new { @class = "btn btn-primary" }) @:&nbsp;
+        @Html.ActionLink("Create Widget", "Create", "Widgets", null, new { @class = "btn btn-primary" })
+    }
+</p>
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EntityFamiliarName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentWorkerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriorityScore)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntityFamiliarName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentWorkerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriorityScore)
+            </td>
+            <td>
+                @if (item.Status != "Approved" && item.Status != "Canceled")
+                {
+                    string linkText = item.Status.Substring(item.Status.Length - 3, 3) == "ing" ? "Edit" : "Claim";
+                    @Html.ActionLink(linkText, "Edit", item.EntityFormalNamePlural, new { id = item.Id }, null)
+                }
+            </td>
+        </tr>
+    }
+</table>
